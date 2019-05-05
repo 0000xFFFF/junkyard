@@ -1,0 +1,1 @@
+g++ src\*.cpp src\*.c -std=c++17 -I ".\include" -L ".\lib" -lglew32 -lglfw3dll -lglfw3 -lOpenGL32 -o main.exe
