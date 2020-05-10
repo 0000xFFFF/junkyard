@@ -1,1 +1,1 @@
-g++ -std=c++17 -static-libgcc -static-libstdc++ src\*.cpp src\*.c -I ".\include" -L ".\lib" -lglew32 -lglfw3dll -lglfw3 -lOpenGL32 -lmingw32 -o main.exe
+g++32 -std=c++17 -static-libgcc -static-libstdc++ src\*.cpp src\*.c -I ".\include" -L ".\lib" -lglew32 -lglfw3dll -lglfw3 -lOpenGL32 -lmingw32 -o main.exe

@@ -13,6 +13,7 @@
 
 float g_X = 0.0f;
 float g_Y = 0.0f;
+float g_Z = 0.0f;
 
 /*
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods){
@@ -39,7 +40,6 @@ void thread_w(GLFWwindow* window){
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){ g_Y += move_add; }
 	}
 }
-
 void thread_a(GLFWwindow* window){
 	while(!g_CLOSE){
 		usleep(10000);
@@ -56,6 +56,18 @@ void thread_d(GLFWwindow* window){
 	while(!g_CLOSE){
 		usleep(10000);
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){ g_X -= move_add; }
+	}
+}
+void thread_q(GLFWwindow* window){
+	while(!g_CLOSE){
+		usleep(10000);
+		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS){ g_Z += move_add; }
+	}
+}
+void thread_e(GLFWwindow* window){
+	while(!g_CLOSE){
+		usleep(10000);
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS){ g_Z -= move_add; }
 	}
 }
 
@@ -95,15 +107,19 @@ int main(int argc, char** argv){
 	std::thread t_A(thread_a, window);
 	std::thread t_S(thread_s, window);
 	std::thread t_D(thread_d, window);
+	std::thread t_Q(thread_q, window);
+	std::thread t_E(thread_e, window);
 	t_W.detach();
 	t_A.detach();
 	t_S.detach();
 	t_D.detach();
+	t_Q.detach();
+	t_E.detach();
 	
 	float counter = 0.0f;
     while(!glfwWindowShouldClose(window)){
 		
-		glClearColor(0.0f, 0.0f, 0.3f, 0);
+		glClearColor(0.0f, 0.5f, 0.1f, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// float sinCounter = sinf(counter);
@@ -113,6 +129,7 @@ int main(int argc, char** argv){
 		
 		transform.GetPos().x = g_X;
 		transform.GetPos().y = g_Y;
+		transform.GetPos().z = g_Z;
 	
 		// transform.GetRot().x = sinCounter * 15; // cosf(counter * 10);
 		transform.GetRot().y = counter * 8;
